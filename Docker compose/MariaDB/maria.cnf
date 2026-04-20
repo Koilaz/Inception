@@ -1,0 +1,10 @@
+[mysqld]
+
+user = mysql
+
+port = 3306
+
+# 0.0.0.0 permet les connexions depuis d'autres conteneurs (comme WordPress)
+bind-address = 0.0.0.0
+
+datadir = /var/lib/mysql

@@ -1,0 +1,65 @@
+services:
+  nginx:
+    build: ./Nginx
+    image: my_nginx
+    container_name: nginx
+    ports:
+      - "8443:443"
+    volumes:
+      - wp_data:/var/www/html
+    networks:
+      - inception_net
+    depends_on:
+      - wordpress
+    restart: on-failure
+
+  wordpress:
+    build: ./Wordpress
+    image: my_wordpress
+    container_name: wordpress
+    environment:
+      - MYSQL_DATABASE=wordpress_db
+      - MYSQL_USER=wp_user
+      - MYSQL_PASSWORD=secure_pass
+      - WP_ADMIN_USER=lmarck
+      - WP_ADMIN_PASSWORD=complex_pass_123
+      - WP_ADMIN_EMAIL=lmarck@student.42.fr
+      - WP_NORMAL_USER=hugo
+      - WP_NORMAL_PASSWORD=hugo_pass_456
+      - WP_NORMAL_EMAIL=hugo@student.42.fr
+    volumes:
+      - wp_data:/var/www/html
+    networks:
+      - inception_net
+    depends_on:
+      mariadb:
+        condition: service_healthy
+    restart: on-failure
+
+  mariadb:
+    build: ./MariaDB
+    image: my_mariadb
+    container_name: mariadb
+    environment:
+      - MYSQL_DATABASE=wordpress_db
+      - MYSQL_USER=wp_user
+      - MYSQL_PASSWORD=secure_pass
+      - MYSQL_ROOT_PASSWORD=secure_root_pass
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - inception_net
+    healthcheck:
+      test: [ "CMD-SHELL", "mysqladmin ping -h localhost -u root -p$$MYSQL_ROOT_PASSWORD" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: on-failure
+
+volumes:
+  wp_data:
+  db_data:
+
+
+networks:
+  inception_net:
