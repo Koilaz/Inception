@@ -1,5 +1,7 @@
 #!/bin/sh
 
+chown -R mysql:mysql /var/lib/mysql /run/mysqld
+
 # 1. Initialiser le répertoire de données s'il est vide
 if [ ! -d "/var/lib/mysql/mysql" ]; then
     mariadb-install-db --user=mysql --datadir=/var/lib/mysql
@@ -14,14 +16,14 @@ if [ ! -d "/var/lib/mysql/mysql" ]; then
     # (généralement avec des variables venant de Docker Compose)
     mariadb -u root -e "
         CREATE DATABASE IF NOT EXISTS \`${MYSQL_DATABASE}\`;
-        CREATE USER IF NOT EXISTS \`${MYSQL_USER}\`@'%' IDENTIFIED BY '${MYSQL_PASSWORD}';
+        CREATE USER IF NOT EXISTS \`${MYSQL_USER}\`@'%' IDENTIFIED BY '$(cat /run/secrets/db_password)';
         GRANT ALL PRIVILEGES ON \`${MYSQL_DATABASE}\`.* TO \`${MYSQL_USER}\`@'%';
-        ALTER USER 'root'@'localhost' IDENTIFIED BY '${MYSQL_ROOT_PASSWORD}';
+        ALTER USER 'root'@'localhost' IDENTIFIED BY '$(cat /run/secrets/db_root_password)';
         FLUSH PRIVILEGES;
     "
 
     # 4. Arrêter le serveur de fond pour le relancer proprement au premier plan
-    mariadb-admin -u root -p${MYSQL_ROOT_PASSWORD} shutdown
+    mariadb-admin -u root -p$(cat /run/secrets/db_root_password) shutdown
 	echo "Maria Db database Initialised"
 
 	else

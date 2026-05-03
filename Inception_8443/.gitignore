@@ -1,0 +1,4 @@
+# Ignore the secrets directory to prevent uploading passwords and sensitive data
+secrets/
+*.env
+.env

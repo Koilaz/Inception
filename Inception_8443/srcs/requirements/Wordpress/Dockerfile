@@ -31,8 +31,9 @@ RUN mkdir -p /usr/src/wordpress \
 	&& chmod +x wp-cli.phar \
 	&& mv wp-cli.phar /usr/local/bin/wp
 
-COPY setup_wordpress.sh /usr/local/bin/setup_wordpress.sh
-COPY php.conf /etc/php82/php-fpm.d/www.conf
+
+COPY tools/setup_wordpress.sh /usr/local/bin/setup_wordpress.sh
+COPY conf/php.conf /etc/php82/php-fpm.d/www.conf
 
 RUN chmod +x /usr/local/bin/setup_wordpress.sh
 

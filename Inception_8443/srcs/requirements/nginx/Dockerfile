@@ -9,11 +9,17 @@ RUN addgroup -g 1000 user1 && adduser -u 1000 -G user1 -S user1
 # 2. Tell Nginx to run its worker processes as user1 instead of the default 'nginx' user
 RUN sed -i 's/user nginx;/user user1;/g' /etc/nginx/nginx.conf
 
-COPY default.conf /etc/nginx/http.d/default.conf
+COPY conf/default.conf /etc/nginx/http.d/default.conf
+
+ARG DOMAIN_NAME
+ENV DOMAIN_NAME=${DOMAIN_NAME}
+
+# Replace the hardcoded domain name in default.conf with the ARG variable
+RUN sed -i "s/_DOMAIN_NAME_/${DOMAIN_NAME}/g" /etc/nginx/http.d/default.conf
 
 # Generate a self-signed SSL certificate directly in the Dockerfile
 RUN mkdir -p /etc/nginx/ssl \
-	&& openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt -keyout /etc/nginx/ssl/inception.key -subj "/C=FR/ST=IDF/L=Paris/O=42/OU=42/CN=lmarck.42.fr/UID=lmarck"
+	&& openssl req -x509 -nodes -out /etc/nginx/ssl/inception.crt -keyout /etc/nginx/ssl/inception.key -subj "/C=FR/ST=IDF/L=Paris/O=42/OU=42/CN=${DOMAIN_NAME}/UID=lmarck"
 
 # 3. Create the directory first before modifying permissions, and assign to user1
 RUN mkdir -p /var/www/html \

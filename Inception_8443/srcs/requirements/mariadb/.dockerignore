@@ -1,0 +1,31 @@
+# Git
+.git
+.gitignore
+
+# Secrets and Environment Variables
+.env
+secrets/
+*.txt
+
+# Project architecture files (should not be in the image)
+docker-compose.yml
+Makefile
+README.md
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?lmarck
