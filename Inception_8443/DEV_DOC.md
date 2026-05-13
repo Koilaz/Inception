@@ -13,7 +13,7 @@ This document outlines the setup, build, and management processes for the Incept
 Before building or launching the project, the environment variables and secrets must be configured.
 
 1. Environment Variables:
-	Copy the provided example_env.txt to a file named .env inside the srcs directory. Ensure DOMAIN_NAME is defined appropriately (for example, DOMAIN_NAME=lmarck.42.fr), as the setup relies on this value to configure your hosts system.
+	Copy the provided srcs/example_env.txt to a file named .env inside the srcs directory. Ensure DOMAIN_NAME is defined appropriately (for example, DOMAIN_NAME=lmarck.42.fr), as the setup relies on this value to configure your hosts system.
 
 2. Secrets:
 	The project uses file-based secrets to safely handle passwords and credentials without hardcoding them into the images.

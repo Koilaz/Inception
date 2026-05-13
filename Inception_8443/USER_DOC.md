@@ -12,7 +12,7 @@ The core architecture consists of 3 different containers, each running a single 
 
 ## ◦ Start and stop the project
 
-Before starting the project, make sure to provide a `.env` file and a `secrets` directory. You will find simple examples of these files that you can simply modify and rename to customize and set up your own service.
+Before starting the project, make sure to provide a `.env` file inside the `srcs` directory and a `secrets` directory at the root. You will find simple examples of these files (`srcs/example_env.txt` and `example_secrets/`) that you can simply modify and rename to customize and set up your own service.
 
 You may need to have `sudo` access on your machine to launch the services, as the service will expose a port from your host machine (443) and manage permissions and build directories on your host machine.
 
@@ -48,7 +48,7 @@ You may need to have `sudo` access on your machine to launch the services, as th
 
 ## ◦ Locate and manage credentials
 
-- **Locating Credentials:** Sensitive information (such as root passwords, user passwords, and usernames) is stored as single-line text files in the `secrets` directory at the root of the project. Public configuration details (like domain names and database names) are stored in the `.env` file.
+- **Locating Credentials:** Sensitive information (such as root passwords, user passwords, and usernames) is stored as single-line text files in the `secrets` directory at the root of the project. Public configuration details (like domain names and database names) are stored in the `srcs/.env` file.
 
 - **Inside the containers:** Docker mounts these secrets securely into RAM under the `/run/secrets/` directory in the containers that need them (e.g., WordPress and MariaDB).
 

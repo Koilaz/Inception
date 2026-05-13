@@ -15,7 +15,7 @@ Before you can build or launch the project, you must set up the environment vari
 1. **Environment Variables (`.env`)**:
    - Copy the provided example to the required location for Docker Compose.
    ```bash
-   cp example_env.txt srcs/.env
+   cp srcs/example_env.txt srcs/.env
    ```
    - Make sure `DOMAIN_NAME` is defined in `srcs/.env` (e.g., `DOMAIN_NAME=lmarck.42.fr`), as the `Makefile` reads this value to configure `/etc/hosts`.
 

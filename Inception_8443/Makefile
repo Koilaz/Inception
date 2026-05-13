@@ -1,6 +1,6 @@
 NAME = inception
-COMPOSE = docker compose -f srcs/docker-compose.yml
-DOMAIN = $(shell grep DOMAIN_NAME srcs/.env | cut -d '=' -f2)
+COMPOSE = docker compose -f srcs/docker-compose.yml --env-file srcs/.env
+DOMAIN = $(shell grep -E '^DOMAIN_NAME=' srcs/.env | cut -d '=' -f2)
 
 all: up
 

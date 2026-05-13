@@ -1,7 +1,6 @@
 # ==============================================================================
 # INSTRUCTIONS
 #	Rename this file to '.env' (mv example_env.txt .env)
-#	(Do NOT use 'johndoe' in your actual evaluation)
 # ==============================================================================
 
 # Domain configuration

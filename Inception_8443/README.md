@@ -18,7 +18,7 @@ For data persistence, two Docker volumes are created: one for the database files
 
 	Requirements
 
-- You must provide a `.env` file and a `secrets` directory containing the environment variables and sensitive information, respectively. You can use `example_env.txt` and `example_secrets/` as templates. Rename them to `.env` and `secrets/`, and modify them as you wish to configure the services.
+- You must provide a `.env` file in the `srcs` directory and a `secrets` directory containing the environment variables and sensitive information, respectively. You can use `srcs/example_env.txt` and `example_secrets/` as templates. Rename them to `srcs/.env` and `secrets/`, and modify them as you wish to configure the services.
 - You may need `sudo` rights on your device in order to launch the Docker daemon and map local host paths.
 
 	Ressources
