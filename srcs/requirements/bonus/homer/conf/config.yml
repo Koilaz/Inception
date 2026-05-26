@@ -1,0 +1,40 @@
+title: "Inception"
+subtitle: "lmarck.42.fr"
+logo: "logo.png"
+header: true
+footer: false
+
+services:
+  - name: "Site"
+    icon: "fab fa-wordpress"
+    items:
+      - name: "WordPress"
+        subtitle: "lmarck.42.fr"
+        url: "https://lmarck.42.fr"
+        target: "_blank"
+
+  - name: "Site Adminisration"
+    icon: "fas fa-cog"
+    items:
+      - name: "WordPress Admin"
+        subtitle: "lmarck.42.fr/wp-admin"
+        url: "https://lmarck.42.fr/wp-admin"
+        target: "_blank"
+
+  - name: "Tools"
+    icon: "fas fa-tools"
+    items:
+      - name: "Adminer"
+        subtitle: "Database management"
+        url: "https://lmarck.42.fr/adminer"
+        target: "_blank"
+        tag: "db"
+        tagstyle: "is-info"
+
+  - name: "Static website with homemade server"
+    icon: "fas fa-globe"
+    items:
+      - name: "Webserv"
+        subtitle: "http://localhost:8080/"
+        url: "http://localhost:8080/"
+        target: "_blank"
